@@ -54,11 +54,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 Image.asset(
                   'assets/images/Raw_logo.png',
                   width: 200,
-                  height: 200,
+                  height: 200,  
                 ),
                 SizedBox(height: 20),
                 Text(
-                  'Welcome to Raw Coworking Space',
+                  'Office Made Easy',
                   style: TextStyle(
                     fontSize: 22,
                     color: const Color.fromARGB(255, 200, 55, 55),

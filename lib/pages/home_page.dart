@@ -1,4 +1,5 @@
-
+import 'package:coworking/pages/coworking_spaces_section.dart';
+import 'package:coworking/pages/profile_section.dart';
 
 import 'package:flutter/material.dart';
 
@@ -6,49 +7,61 @@ import 'package:flutter/material.dart';
 
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+const HomePage({super.key});
 
 
   
 
   @override
   Widget build(BuildContext context) {
+  // Retrieve passed user data
+    final Map<String, dynamic> args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
 
-   
+    final String userName = args['userName'] ?? 'Unknown User';
+    final String userEmail = args['userEmail'] ?? 'Unknown Email';
+    final String cabinNumber = args['cabinNumber'] ?? 'Unknown Cabin';
+   final String token = args['token']; 
     return Scaffold(
       backgroundColor: const Color(0xFFFDF8F6),
 
-      body: Column(
+      body: SafeArea(
+        child:Column(
         children: [
-          // Header
+           // Header
+          UserProfileHeader(
+            userName: userName,
+            userEmail: userEmail,
+            cabinNumber: cabinNumber,
+          ),
+
+
+            //  // Menu icon
+            //     IconButton(
+            //       icon: const Icon(Icons.menu, size: 30, color: Colors.black87),
+            //       onPressed: () {
+            //         // You can open a Drawer or show a menu here
+            //         showModalBottomSheet(
+            //           context: context,
+            //           isScrollControlled: true,
+            //           backgroundColor: Colors.black,
+            //           builder: (context) {
+            //             return const MenuDrawer();
+            //           },
+            //         );
+            //       },
+            //     ),
+            // Coworking Spaces Section
+            CoworkingSpacesSection(token: token),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             color: const Color.fromARGB(255, 255, 255, 255),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Logo
-                Image.asset(
-                  'assets/images/Raw_logo.png',
-                  width: 70,
-                  height: 70,
-                ),
+               
 
-                // Menu icon
-                IconButton(
-                  icon: const Icon(Icons.menu, size: 30, color: Colors.black87),
-                  onPressed: () {
-                    // You can open a Drawer or show a menu here
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      backgroundColor: Colors.black,
-                      builder: (context) {
-                        return const MenuDrawer();
-                      },
-                    );
-                  },
-                ),
+                
               ],
             ),
             
@@ -63,6 +76,8 @@ class HomePage extends StatelessWidget {
         ],
 
       ),
+      )
+      
     );
   }
   
@@ -127,4 +142,3 @@ class MenuDrawer extends StatelessWidget {
     );
   }
 }
-

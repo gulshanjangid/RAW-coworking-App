@@ -27,15 +27,25 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
+
+
 dependencies:
+   
   flutter:
     sdk: flutter
-
+  http: 0.13.6
+  intl: 0.19.0
+  image_picker: ^1.0.4
+  shared_preferences: 2.0.15
+  pdf: 3.10.4
+  url_launcher: ^6.2.1
+  # provider: 6.1.1
+  # printing: 5.12.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
+cupertino_icons: ^1.0.8
 flutter_launcher_icons: ^0.13.1
-
+ 
 flutter_icons:
   android: true
   ios: true
@@ -65,6 +75,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/Raw_logo.png
+    - assets/images/user.jpg
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

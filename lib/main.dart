@@ -1,10 +1,15 @@
+import 'package:coworking/admin/admin_dashboard.dart';
+import 'package:coworking/pages/one_day_pass.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:coworking/login/login.dart';
 import 'package:coworking/splash_screen.dart';
 import 'package:coworking/pages/home_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp( 
+    const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -25,7 +30,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginPage(),
         '/home': (context) => const HomePage(),
-        // '/oneDayPass': (context) => const OneDayPassPage(), // if applicable
+        '/adminDashboard': (context) => const AdminDashboard(),
+  
+         '/oneDayPass': (context) => const OneDayPassesPage(), // if applicable
       },
     );
   }
