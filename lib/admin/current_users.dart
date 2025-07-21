@@ -13,7 +13,7 @@ class _CurrentUsersState extends State<CurrentUsers> {
   List<dynamic> users = [];
 
   Future<void> fetchUsers() async {
-    final response = await http.get(Uri.parse('http://192.168.1.9:8080/users'));
+    final response = await http.get(Uri.parse('http://10.0.2.2:8080/users'));
 
     if (response.statusCode == 200) {
       setState(() {
@@ -28,7 +28,7 @@ class _CurrentUsersState extends State<CurrentUsers> {
   }
 
   Future<void> deleteUser(String id) async {
-    final response = await http.delete(Uri.parse('http://192.168.1.9:8080/delete-user/$id'));
+    final response = await http.delete(Uri.parse('http://10.0.2.2:8080/delete-user/$id'));
 
     if (response.statusCode == 200) {
       fetchUsers();
@@ -73,7 +73,7 @@ class _CurrentUsersState extends State<CurrentUsers> {
           TextButton(
             onPressed: () async {
               final response = await http.put(
-                Uri.parse('http://192.168.1.9:8080/update-user/${user['_id']}'),
+                Uri.parse('http://10.0.2.2:8080/update-user/${user['_id']}'),
                 headers: {'Content-Type': 'application/json'},
                 body: jsonEncode({
                   'userName': nameController.text.trim(),

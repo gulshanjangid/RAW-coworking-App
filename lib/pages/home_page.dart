@@ -1,17 +1,8 @@
 import 'package:coworking/pages/coworking_spaces_section.dart';
 import 'package:coworking/pages/profile_section.dart';
-
 import 'package:flutter/material.dart';
-
-
-
-
 class HomePage extends StatelessWidget {
 const HomePage({super.key});
-
-
-  
-
   @override
   Widget build(BuildContext context) {
   // Retrieve passed user data
@@ -67,12 +58,6 @@ const HomePage({super.key});
             
           ),
            // Space
-     
-     
-         
-         
-           
-     
         ],
 
       ),

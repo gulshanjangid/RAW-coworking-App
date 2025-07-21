@@ -45,7 +45,7 @@ final TextEditingController _emailController = TextEditingController();
       return;  
     }
 
-    final url = Uri.parse('http://192.168.1.9:8080/add-user'); // Replace with your server IP if using a real device
+    final url = Uri.parse('http://10.0.2.2:8080/add-user'); // Replace with your server IP if using a real device
     final body = jsonEncode({
       'username': username,
       'password': password,

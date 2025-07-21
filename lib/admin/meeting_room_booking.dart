@@ -13,7 +13,7 @@ class _MeetingRoomAdminPageState extends State<MeetingRoomAdminPage> {
   List<MeetingRoomBooking> bookings = [];
   List<MeetingRoomBooking> filteredBookings = [];
   String searchQuery = '';
-  String? selectedDate; // Date filter
+  String? selectedDate; 
 
   @override
   void initState() {
@@ -22,8 +22,8 @@ class _MeetingRoomAdminPageState extends State<MeetingRoomAdminPage> {
   }
 
   Future<void> fetchMeetingBookings() async {
-    final url = Uri.parse('http://192.168.1.9:8080/meetings/meetings');
-
+    final url = Uri.parse('http://10.0.2.2:8080/meetings/meetings');
+    
     try {
       final response = await http.get(url);
 
@@ -88,7 +88,7 @@ class _MeetingRoomAdminPageState extends State<MeetingRoomAdminPage> {
   }
 
   Future<void> deleteBooking(String id) async {
-    final url = Uri.parse('http://192.168.1.9:8080/meetings/delete-meeting/$id');
+    final url = Uri.parse('http://10.0.2.2:8080/meetings/delete-meeting/$id');
 
     try {
       final response = await http.delete(url);
@@ -107,7 +107,7 @@ class _MeetingRoomAdminPageState extends State<MeetingRoomAdminPage> {
   }
 
   Future<void> updateBooking(MeetingRoomBooking booking) async {
-    final url = Uri.parse('http://192.168.1.9:8080/meetings/update-meeting/${booking.id}');
+    final url = Uri.parse('http://10.0.2.2:8080/meetings/update-meeting/${booking.id}');
 
     try {
       final response = await http.put(
