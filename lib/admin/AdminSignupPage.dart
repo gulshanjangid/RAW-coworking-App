@@ -47,7 +47,7 @@ class _AdminSignupPageState extends State<AdminSignupPage> {
             const Text(
               'Admin Signup',
               textAlign: TextAlign.center,
-              style: TextStyle(
+               style: TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
