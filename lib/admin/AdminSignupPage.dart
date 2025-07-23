@@ -54,7 +54,7 @@ class _AdminSignupPageState extends State<AdminSignupPage> {
               ),
             ),
             const SizedBox(height: 32),
-
+            
             // Username Field
             TextField(
               controller: _usernameController,
