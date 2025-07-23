@@ -23,7 +23,7 @@ class _MeetingScheduleState extends State<MeetingSchedule> {
 
   Future<void> fetchMeetings() async {
     setState(() => isLoading = true);
-    final url = Uri.parse('http://10.0.2.2:8080/api/meet_schedule/user');
+    final url = Uri.parse('https://raw-coworking-app.onrender.com/api/meet_schedule/user');
     final res = await http.get(
       url,
       headers: {'Authorization': 'Bearer ${widget.token}'},
@@ -46,7 +46,7 @@ class _MeetingScheduleState extends State<MeetingSchedule> {
       return;
     }
 
-    final url = Uri.parse('http://10.0.2.2:8080/api/meet_schedule/request');
+    final url = Uri.parse('https://raw-coworking-app.onrender.com/api/meet_schedule/request');
     final response = await http.post(
       url,
       headers: {

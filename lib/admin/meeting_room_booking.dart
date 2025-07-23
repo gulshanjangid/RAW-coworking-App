@@ -22,7 +22,7 @@ class _MeetingRoomAdminPageState extends State<MeetingRoomAdminPage> {
   }
 
   Future<void> fetchMeetingBookings() async {
-    final url = Uri.parse('http://10.0.2.2:8080/meetings/meetings');
+    final url = Uri.parse('https://raw-coworking-app.onrender.com/meetings/meetings');
     
     try {
       final response = await http.get(url);

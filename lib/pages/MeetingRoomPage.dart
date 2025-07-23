@@ -124,7 +124,7 @@ class _MeetingRoomPageState extends State<MeetingRoomPage> {
 
     try {
       final response = await http.post(
-        Uri.parse('http://10.0.2.2:8080/meetings/book-meeting'), // TODO: Replace with your actual backend URL
+        Uri.parse('https://raw-coworking-app.onrender.com/meetings/book-meeting'), // TODO: Replace with your actual backend URL
         headers: {'Content-Type': 'application/json',
           'Authorization': 'Bearer ${widget.token}'}, // Include token for authentication
         body: jsonEncode(bookingData),

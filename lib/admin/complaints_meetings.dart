@@ -25,7 +25,7 @@ class _ComplaintsMeetingsPageState extends State<ComplaintsMeetingsPage> with Si
 
   /// ✅ Fetch all complaints (admin, no token)
   Future<void> fetchAllComplaints() async {
-    final url = Uri.parse('http://10.0.2.2:8080/api/requests/all');
+    final url = Uri.parse('https://raw-coworking-app.onrender.com/api/requests/all');
     try {
       final response = await http.get(url);
       if (response.statusCode == 200) {
@@ -50,7 +50,7 @@ class _ComplaintsMeetingsPageState extends State<ComplaintsMeetingsPage> with Si
 
   /// ✅ Update complaint status (PUT API)
   Future<void> updateComplaintStatus(String complaintId, String newStatus) async {
-    final url = Uri.parse('http://10.0.2.2:8080/api/requests/$complaintId/status');
+    final url = Uri.parse('https://raw-coworking-app.onrender.com/api/requests/$complaintId/status');
     try {
       final response = await http.put(
         url,

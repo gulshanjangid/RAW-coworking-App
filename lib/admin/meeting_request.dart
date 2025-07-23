@@ -22,7 +22,7 @@ class _MeetingRequestState extends State<MeetingRequest> {
 
   Future<void> fetchPendingMeetings() async {
     setState(() => isLoading = true);
-    final res = await http.get(Uri.parse('http://10.0.2.2:8080/api/meet_schedule/pending'));
+    final res = await http.get(Uri.parse('https://raw-coworking-app.onrender.com/api/meet_schedule/pending'));
     if (res.statusCode == 200) {
       meetings = jsonDecode(res.body);
     }
@@ -32,7 +32,7 @@ class _MeetingRequestState extends State<MeetingRequest> {
   Future<void> approveMeeting(String meetingId) async {
     final meetingLink = 'https://meet.jit.si/$meetingId';
     final res = await http.post(
-      Uri.parse('http://10.0.2.2:8080/api/meet_schedule/approve'),
+      Uri.parse('https://raw-coworking-app.onrender.com/api/meet_schedule/approve'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'meetingId': meetingId,

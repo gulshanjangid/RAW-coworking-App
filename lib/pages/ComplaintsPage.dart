@@ -36,7 +36,7 @@ class _ServicePageState extends State<ServicePage> with SingleTickerProviderStat
   }
 
   Future<void> fetchMyServiceRequests() async {
-    final url = Uri.parse('http://10.0.2.2:8080/api/requests/my');
+    final url = Uri.parse('https://raw-coworking-app.onrender.com/api/requests/my');
 
     try {
       final response = await http.get(
@@ -78,7 +78,7 @@ class _ServicePageState extends State<ServicePage> with SingleTickerProviderStat
       return;
     }
 
-    final url = Uri.parse('http://10.0.2.2:8080/api/requests/create');
+    final url = Uri.parse('https://raw-coworking-app.onrender.com/api/requests/create');
 
     try {
       final response = await http.post(
