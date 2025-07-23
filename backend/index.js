@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 // app.use('/uploads', express.static('uploads')); // Serve uploaded images
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-
+ 
 // Initialize Socket.IO
 const server = require('http').createServer(app);
 const io = socketIo(server, {
