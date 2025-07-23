@@ -12,13 +12,15 @@ const meet_scheduleRoutes = require('./routes/meet_schedule.routes');
 const notificationRoutes = require('./routes/notification.routes');
 const socketIo = require('socket.io');
 const { setupSocket } = require('./sockets/socketManager');
+const path = require('path');
 require('dotenv').config(); // Load environment variables
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-app.use('/uploads', express.static('uploads')); // Serve uploaded images
+// app.use('/uploads', express.static('uploads')); // Serve uploaded images
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 // Initialize Socket.IO
