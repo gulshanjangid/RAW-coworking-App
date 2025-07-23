@@ -12,9 +12,11 @@ const meet_scheduleRoutes = require('./routes/meet_schedule.routes');
 const notificationRoutes = require('./routes/notification.routes');
 const socketIo = require('socket.io');
 const { setupSocket } = require('./sockets/socketManager');
+require('dotenv').config(); // Load environment variables
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 app.use('/uploads', express.static('uploads')); // Serve uploaded images
 
@@ -32,7 +34,7 @@ const io = socketIo(server, {
 setupSocket(io);
 app.set('socketio', io);
 
-mongoose.connect('mongodb://localhost:27017/coworkingdb', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('MongoDB connected.');
    
