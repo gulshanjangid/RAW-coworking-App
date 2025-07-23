@@ -88,7 +88,7 @@ class _MeetingRoomAdminPageState extends State<MeetingRoomAdminPage> {
   }
 
   Future<void> deleteBooking(String id) async {
-    final url = Uri.parse('http://10.0.2.2:8080/meetings/delete-meeting/$id');
+    final url = Uri.parse('https://raw-coworking-app.onrender.com/meetings/delete-meeting/$id');
 
     try {
       final response = await http.delete(url);
@@ -107,7 +107,7 @@ class _MeetingRoomAdminPageState extends State<MeetingRoomAdminPage> {
   }
 
   Future<void> updateBooking(MeetingRoomBooking booking) async {
-    final url = Uri.parse('http://10.0.2.2:8080/meetings/update-meeting/${booking.id}');
+    final url = Uri.parse('https://raw-coworking-app.onrender.com/meetings/update-meeting/${booking.id}');
 
     try {
       final response = await http.put(
