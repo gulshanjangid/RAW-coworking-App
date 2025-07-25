@@ -21,6 +21,7 @@ app.use(bodyParser.json());
 
 
 // app.use('/uploads', express.static('uploads')); // Serve uploaded images
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
  
