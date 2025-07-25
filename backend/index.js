@@ -12,6 +12,7 @@ const meet_scheduleRoutes = require('./routes/meet_schedule.routes');
 const notificationRoutes = require('./routes/notification.routes');
 const socketIo = require('socket.io');
 const { setupSocket } = require('./sockets/socketManager');
+const invoiceRoutes = require('./routes/invoice.routes');
 const path = require('path');
 require('dotenv').config(); // Load environment variables
 app.use(cors());
@@ -56,10 +57,12 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/api/notifications', notificationRoutes);
+        app.use('/api/invoices', invoiceRoutes);
         app.listen(port, () => {
             console.log('Server running on port ' + port);
         }); 
     })
+    
     .catch(err => {
         console.error('MongoDB connection error:', err.message);
     });

@@ -1,11 +1,12 @@
 const Invoice = require('../models/Invoice');
-const User = require('../models/User');
+const User = require('../models/user.model');
+const multer = require('multer');
 
 // Admin: Create invoice
 exports.createInvoice = async (req, res) => {
   const { username, price } = req.body;
 
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ username: username.trim() });
   if (!user) return res.status(404).json({ message: 'User not found' });
 
   const invoice = new Invoice({ user: user._id, price });
@@ -18,10 +19,10 @@ exports.createInvoice = async (req, res) => {
 exports.getUserInvoices = async (req, res) => {
   const { username } = req.params;
 
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ username: username.trim() });
   if (!user) return res.status(404).json({ message: 'User not found' });
 
-  const invoices = await Invoice.find({ user: user._id }).populate('user');
+  const invoices = await Invoice.find({ user: user._id }).sort({ createdAt: -1 });
   res.json(invoices);
 };
 
