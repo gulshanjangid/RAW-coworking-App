@@ -30,9 +30,7 @@ exports.getUserInvoices = async (req, res) => {
 exports.uploadPaymentImage = async (req, res) => {
  const { invoiceId } = req.params;
   const image = req.file?.filename;
-if (!image) {
-      return res.status(400).json({ message: 'Image file is required' });
-    }
+
   const invoice = await Invoice.findByIdAndUpdate(
     invoiceId,
     { paymentImage: image, status: 'paid' },
