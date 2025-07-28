@@ -82,7 +82,7 @@ const CoworkingSpacesSection({super.key, required this.token});
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const InvoicingPage()),
+                      MaterialPageRoute(builder: (context) =>UserInvoicePage(token: token)),
                     );
                   },
                 ),

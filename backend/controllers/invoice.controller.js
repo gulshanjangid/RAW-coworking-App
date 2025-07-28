@@ -52,3 +52,15 @@ exports.rejectInvoice = async (req, res) => {
 
   res.json(invoice);
 };
+// Admin: Get all invoices
+exports.getAllInvoices = async (req, res) => {
+  try {
+    const invoices = await Invoice.find()
+      .populate('user', 'username') // Include username from user model
+      .sort({ createdAt: -1 });
+
+    res.json(invoices);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error while fetching invoices' });
+  }
+};

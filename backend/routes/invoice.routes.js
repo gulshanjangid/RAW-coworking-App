@@ -15,9 +15,9 @@ const upload = multer({ storage });
 
 // Admin
 router.post('/create', invoiceController.createInvoice);
-
+router.get('/all', invoiceController.getAllInvoices); // ✅ NEW
 // User
-router.get('/user/:username', invoiceController.getUserInvoices);
+router.get('/user/:id', invoiceController.getUserInvoices);
 router.post('/pay/:invoiceId', upload.single('image'), invoiceController.uploadPaymentImage);
 router.post('/reject/:invoiceId', invoiceController.rejectInvoice);
 

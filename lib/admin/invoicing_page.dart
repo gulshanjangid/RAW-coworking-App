@@ -1,59 +1,138 @@
+// admin_invoicing_page.dart
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:pdf/widgets.dart' as pw;
-// import 'package:printing/printing.dart';
+import 'package:http/http.dart' as http;
 
 class Invoice {
-  final String userName;
+  final String id;
+  final String username;
+  final String? email;
+  final double price;
   final String status;
-  final double amount;
-  final DateTime dueDate;
+  final String? paymentImage;
 
   Invoice({
-    required this.userName,
+    required this.id,
+    required this.username,
+    this.email,
+    required this.price,
     required this.status,
-    required this.amount,
-    required this.dueDate,
+    this.paymentImage,
   });
+
+  factory Invoice.fromJson(Map<String, dynamic> json) {
+    final user = json['user'] ?? {};
+    return Invoice(
+      id: json['_id'],
+      username: user['username'] ?? 'Unknown',
+      email: user['email'],
+      price: (json['price'] as num).toDouble(),
+      status: json['status'],
+      paymentImage: json['paymentImage'],
+    );
+  }
 }
 
-class InvoicingPage extends StatefulWidget {
-  const InvoicingPage({super.key});
+class AdminInvoicingPage extends StatefulWidget {
+  const AdminInvoicingPage({super.key});
 
   @override
-  State<InvoicingPage> createState() => _InvoicingPageState();
+  State<AdminInvoicingPage> createState() => _AdminInvoicingPageState();
 }
 
-class _InvoicingPageState extends State<InvoicingPage> with SingleTickerProviderStateMixin {
+class _AdminInvoicingPageState extends State<AdminInvoicingPage>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
-  List<Invoice> invoices = [
-    Invoice(userName: 'User A', status: 'Pending', amount: 150.0, dueDate: DateTime.now().add(const Duration(days: 5))),
-    Invoice(userName: 'User B', status: 'Completed', amount: 200.0, dueDate: DateTime.now().subtract(const Duration(days: 3))),
-    Invoice(userName: 'User C', status: 'Pending', amount: 300.0, dueDate: DateTime.now().add(const Duration(days: 2))),
-  ];
+  List<Invoice> invoices = [];
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+    fetchInvoices();
   }
 
-  void downloadInvoice(Invoice invoice) async {
-    final pdf = pw.Document();
-    pdf.addPage(
-      pw.Page(
-        build: (pw.Context context) => pw.Center(
-          child: pw.Text('Invoice for ${invoice.userName}\nAmount: \$${invoice.amount}\nStatus: ${invoice.status}\nDue: ${invoice.dueDate}'),
+  Future<void> fetchInvoices() async {
+    try {
+      final res = await http.get(
+        Uri.parse('https://raw-coworking-app.onrender.com/api/invoices/all'),
+      );
+      if (res.statusCode == 200) {
+        final List data = jsonDecode(res.body);
+        setState(() {
+          invoices = data.map((e) => Invoice.fromJson(e)).toList();
+          isLoading = false;
+        });
+      } else {
+        throw Exception('Failed to load invoices');
+      }
+    } catch (e) {
+      setState(() => isLoading = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error fetching invoices: $e')),
+      );
+    }
+  }
+
+  Future<void> createInvoice(String username, double price) async {
+    try {
+      final res = await http.post(
+        Uri.parse('https://raw-coworking-app.onrender.com/api/invoices/create'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'username': username, 'price': price}),
+      );
+      if (res.statusCode == 201) {
+        fetchInvoices();
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Invoice created.')),
+        );
+      } else {
+        throw Exception('Failed to create invoice');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
+    }
+  }
+
+  void _showCreateInvoiceDialog() {
+    final usernameController = TextEditingController();
+    final priceController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Create Invoice'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(controller: usernameController, decoration: const InputDecoration(labelText: 'Username')),
+            TextField(
+              controller: priceController,
+              decoration: const InputDecoration(labelText: 'Price'),
+              keyboardType: TextInputType.number,
+            ),
+          ],
         ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              final username = usernameController.text.trim();
+              final price = double.tryParse(priceController.text.trim()) ?? 0.0;
+              if (username.isNotEmpty && price > 0) {
+                Navigator.pop(context);
+                createInvoice(username, price);
+              }
+            },
+            child: const Text('Create'),
+          )
+        ],
       ),
     );
-    // await Printing.layoutPdf(onLayout: (format) => pdf.save());
   }
 
-  void sendPaymentReminder(Invoice invoice) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Reminder sent to ${invoice.userName} for payment.')),
-    );
+  List<Invoice> filterInvoices(String status) {
+    return invoices.where((inv) => inv.status.toLowerCase() == status.toLowerCase()).toList();
   }
 
   @override
@@ -64,54 +143,68 @@ class _InvoicingPageState extends State<InvoicingPage> with SingleTickerProvider
 
   @override
   Widget build(BuildContext context) {
-    List<Invoice> pendingInvoices = invoices.where((inv) => inv.status == 'Pending').toList();
-    List<Invoice> completedInvoices = invoices.where((inv) => inv.status == 'Completed').toList();
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Invoicing'),
+        title: const Text('Admin Invoicing'),
         backgroundColor: Colors.red.shade700,
         bottom: TabBar(
           controller: _tabController,
           tabs: const [
             Tab(text: 'Pending'),
-            Tab(text: 'Completed'),
-            Tab(text: 'History'),
+            Tab(text: 'Paid'),
+            Tab(text: 'All'),
           ],
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          _buildInvoiceList(pendingInvoices),
-          _buildInvoiceList(completedInvoices),
-          _buildInvoiceList(invoices),
-        ],
+      body: isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : TabBarView(
+              controller: _tabController,
+              children: [
+                buildInvoiceList(filterInvoices('pending')),
+                buildInvoiceList(filterInvoices('paid')),
+                buildInvoiceList(invoices),
+              ],
+            ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.red.shade700,
+        onPressed: _showCreateInvoiceDialog,
+        child: const Icon(Icons.add),
       ),
     );
   }
 
-  Widget _buildInvoiceList(List<Invoice> invoiceList) {
+  Widget buildInvoiceList(List<Invoice> list) {
+    if (list.isEmpty) {
+      return const Center(child: Text('No invoices'));
+    }
+
     return ListView.builder(
-      itemCount: invoiceList.length,
+      itemCount: list.length,
       itemBuilder: (context, index) {
-        final invoice = invoiceList[index];
+        final invoice = list[index];
         return Card(
-          margin: const EdgeInsets.all(10),
+          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           child: ListTile(
-            title: Text('${invoice.userName} - \$${invoice.amount}'),
-            subtitle: Text('Due: ${invoice.dueDate.day}/${invoice.dueDate.month}/${invoice.dueDate.year} - Status: ${invoice.status}'),
+            leading: const Icon(Icons.account_circle, size: 36),
+            title: Text('${invoice.username} — ₹${invoice.price.toStringAsFixed(2)}'),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (invoice.email != null) Text('Email: ${invoice.email}'),
+                Text('Status: ${invoice.status}'),
+              ],
+            ),
             trailing: PopupMenuButton<String>(
               onSelected: (value) {
-                if (value == 'Download Invoice') {
-                  downloadInvoice(invoice);
-                } else if (value == 'Send Reminder') {
-                  sendPaymentReminder(invoice);
+                if (value == 'Reminder') {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Reminder sent to ${invoice.username}')),
+                  );
                 }
               },
-              itemBuilder: (context) => [
-                const PopupMenuItem(value: 'Download Invoice', child: Text('Download PDF')),
-                const PopupMenuItem(value: 'Send Reminder', child: Text('Send Payment Reminder')),
+              itemBuilder: (context) => const [
+                PopupMenuItem(value: 'Reminder', child: Text('Send Reminder')),
               ],
             ),
           ),

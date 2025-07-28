@@ -20,7 +20,7 @@ class AdminDashboard extends StatelessWidget {
       _DashboardItem('Manage Users', Icons.people, const ManageUsersPage()),
       _DashboardItem('Manage Events', Icons.event, const ManageEventsPage()),
       _DashboardItem('Complaints / Meetings', Icons.support_agent, const ComplaintsMeetingsPage()),
-      _DashboardItem('Invoicing', Icons.payment, const InvoicingPage()),
+      _DashboardItem('Invoicing', Icons.payment, const AdminInvoicingPage()),
       _DashboardItem('Send Reminders', Icons.notifications_active, const SendRemindersPage()),
       _DashboardItem('Meeting Room Booking', Icons.meeting_room, const MeetingRoomAdminPage()), // ✅ New Grid Item
     ];
