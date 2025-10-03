@@ -186,21 +186,32 @@ Make sure you have [Flutter](https://docs.flutter.dev/get-started/install) insta
 Below are screenshots showcasing the main user and admin interfaces of the RAW Coworking Space App:
 
 ### Splash & Home Screen
-<img src="assets/screenshots/splash_screen.jpg" alt="Splash Screen" width="300">
-<img src="assets/screenshots/home_screen.jpg" alt="Home Screen" width="300">
-
-### Booking & Reservations
-![One-Day Pass Booking](assets/screenshots/one_day_pass.jpg)
-![Meeting Room Reservation](assets/screenshots/meeting_room_booking.jpg)
-
-### Invoicing & Service Requests
-![Invoicing Page](assets/screenshots/invoicing_page.jpg)
-![Service Requests](assets/screenshots/complaints_page.jpg)
-
-### Admin Dashboard & Management
-![Admin Dashboard](assets/screenshots/admin_dashboard.jpg)
-![Current Users](assets/screenshots/current_users.jpg)
-
+<table>
+  <tr>
+    <td align="center">
+      <strong>Splash & Home Screen</strong><br>
+      <img src="assets/screenshots/splash_screen.jpg" alt="Splash Screen" width="300">
+      <img src="assets/screenshots/home_screen.jpg" alt="Home Screen" width="300">
+    </td>
+    <td align="center">
+      <strong>Booking & Reservations</strong><br>
+      <img src="assets/screenshots/one_day_pass.jpg" alt="One-Day Pass Booking" width="300">
+      <img src="assets/screenshots/meeting_room_booking.jpg" alt="Meeting Room Reservation" width="300">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <strong>Invoicing & Service Requests</strong><br>
+      <img src="assets/screenshots/invoicing_page.jpg" alt="Invoicing Page" width="300">
+      <img src="assets/screenshots/complaints_page.jpg" alt="Service Requests" width="300">
+    </td>
+    <td align="center">
+      <strong>Admin Dashboard & Management</strong><br>
+      <img src="assets/screenshots/admin_dashboard.jpg" alt="Admin Dashboard" width="300">
+      <img src="assets/screenshots/current_users.jpg" alt="Current Users" width="300">
+    </td>
+  </tr>
+</table>
 > Screenshots are located in the `assets/screenshots/` directory.  
 > For more UI previews, refer to the repository or contribute your own screenshots!
 ## Configuration
