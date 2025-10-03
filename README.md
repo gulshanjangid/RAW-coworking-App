@@ -22,12 +22,12 @@ A central hub for admins provides quick access to manage all aspects of the cowo
    ### User Management
 Admins have comprehensive tools to manage the community. They can view a list of all current users, edit their details, or add new members to the system through a simple and intuitive form.
 
-## 📂 Folder Structure
 The project is organized into a Flutter frontend and a Node.js backend, with a clear and scalable structure.
 
 ### Frontend (Flutter)
-The Flutter application code is primarily located in the lib directory, separated into modules for admin, user pages, and general logic.
+The Flutter application code is primarily located in the `lib` directory, separated into modules for admin, user pages, and general logic.
 
+```
 RAW-coworking-App/
 ├── lib/
 │   ├── admin/
@@ -59,10 +59,12 @@ RAW-coworking-App/
 ├── android/
 ├── ios/
 └── pubspec.yaml
- 
+```
+
 ### Backend (Node.js / Express)
 The backend follows the MVC (Model-View-Controller) pattern to organize logic, data models, and API endpoints.
 
+```
 RAW-coworking-App/
 └── backend/
     ├── controllers/
@@ -97,7 +99,8 @@ RAW-coworking-App/
     │
     ├── index.js
     ├── package.json
-    └── .env 
+    └── .env
+```
 
     ### API Endpoints
 
