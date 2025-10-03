@@ -1,6 +1,33 @@
-# coworking
+# RAW Coworking Space
 
-A new Flutter project.
+A new Flutter project designed to streamline the coworking experience. This app provides a seamless interface for members to manage their workspace, payments, and bookings, while offering a comprehensive dashboard for administrators.
+
+## ✨ App UI and Features
+The app features a clean, modern, and intuitive user interface with a red and white color scheme. It's designed for both coworking members and administrators, with distinct dashboards and functionalities for each.
+
+## User-Facing Features
+   ### Splash & Home Screen
+The app welcomes users with a clean splash screen before opening a personalized dashboard. The home screen shows the user's name, their assigned cabin/seat, and provides quick access to key features.
+
+ ### Booking & Reservations
+Users can easily book one-day passes for coworking spaces or reserve meeting rooms. The interface clearly displays pricing, amenities, and provides a simple form for scheduling.
+
+  ### Invoicing & Service Requests
+An integrated system for managing payments allows users to view pending invoices and their due dates. A dedicated section also lets users submit service requests or complaints with a title and description.
+
+## Admin Dashboard & Management
+   ### Admin Dashboard
+A central hub for admins provides quick access to manage all aspects of the coworking space, including users, events, complaints, invoicing, and meeting room bookings.
+
+   ### User Management
+Admins have comprehensive tools to manage the community. They can view a list of all current users, edit their details, or add new members to the system through a simple and intuitive form.
+
+## 📂 Folder Structure
+The project is organized into a Flutter frontend and a Node.js backend, with a clear and scalable structure.
+
+### Frontend (Flutter)
+The Flutter application code is primarily located in the lib directory, separated into modules for admin, user pages, and general logic.
+ 
 
 ## Getting Started
 
