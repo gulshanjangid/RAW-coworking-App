@@ -186,8 +186,8 @@ Make sure you have [Flutter](https://docs.flutter.dev/get-started/install) insta
 Below are screenshots showcasing the main user and admin interfaces of the RAW Coworking Space App:
 
 ### Splash & Home Screen
-![Splash Screen](assets/screenshots/splash_screen.jpg)
-![Home Screen](assets/screenshots/home_screen.jpg)
+<img src="assets/screenshots/splash_screen.jpg" alt="Splash Screen" width="300">
+<img src="assets/screenshots/home_screen.jpg" alt="Home Screen" width="300">
 
 ### Booking & Reservations
 ![One-Day Pass Booking](assets/screenshots/one_day_pass.jpg)
