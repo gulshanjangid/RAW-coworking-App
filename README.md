@@ -144,24 +144,21 @@ RAW-coworking-App/
 
     > All endpoints may require authentication and proper authorization (admin/user roles).
 
-## Getting Started
+ ## Getting Started
+    This project serves as a robust foundation for building a modern Flutter application tailored for coworking space management.
 
-This project is a starting point for a Flutter application.
+    To begin, ensure you have Flutter installed and configured on your system. If you are new to Flutter, the following resources will help you get started:
 
-A few resources to get you started if this is your first Flutter project:
+    - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+    - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+    - [Flutter Documentation](https://docs.flutter.dev/) — Comprehensive guides, tutorials, and API references
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+    Explore these materials to familiarize yourself with Flutter development, best practices, and sample projects.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-## Project Repository
+    ## Project Repository
 
-Find the source code and updates at:  
-[RAW coworking Space App GitHub Repository](https://github.com/gulshanjangid/RAW-coworking-App)
-
-
+    Access the complete source code, updates, and issue tracking at:  
+    [RAW Coworking Space App GitHub Repository](https://github.com/gulshanjangid/RAW-coworking-App)
 
 ## How to Run
 
@@ -181,8 +178,31 @@ Find the source code and updates at:
     flutter run
     ```
 
+
 Make sure you have [Flutter](https://docs.flutter.dev/get-started/install) installed and set up.
 
+## UI Screenshots
+
+Below are screenshots showcasing the main user and admin interfaces of the RAW Coworking Space App:
+
+### Splash & Home Screen
+![Splash Screen](assets/screenshots/splash_screen.jpg)
+![Home Screen](assets/screenshots/home_screen.jpg)
+
+### Booking & Reservations
+![One-Day Pass Booking](assets/screenshots/one_day_pass.jpg)
+![Meeting Room Reservation](assets/screenshots/meeting_room_booking.jpg)
+
+### Invoicing & Service Requests
+![Invoicing Page](assets/screenshots/invoicing_page.jpg)
+![Service Requests](assets/screenshots/complaints_page.jpg)
+
+### Admin Dashboard & Management
+![Admin Dashboard](assets/screenshots/admin_dashboard.jpg)
+![Current Users](assets/screenshots/current_users.jpg)
+
+> Screenshots are located in the `assets/screenshots/` directory.  
+> For more UI previews, refer to the repository or contribute your own screenshots!
 ## Configuration
 
 - Update API endpoints in your code if needed.
