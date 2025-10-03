@@ -27,7 +27,119 @@ The project is organized into a Flutter frontend and a Node.js backend, with a c
 
 ### Frontend (Flutter)
 The Flutter application code is primarily located in the lib directory, separated into modules for admin, user pages, and general logic.
+
+RAW-coworking-App/
+├── lib/
+│   ├── admin/
+│   │   ├── admin_dashboard.dart
+│   │   ├── complaints_meetings.dart
+│   │   ├── current_users.dart
+│   │   ├── event_manage.dart
+│   │   ├── invoicing_page.dart
+│   │   ├── meeting_room_booking.dart
+│   │   ├── new_user.dart
+│   │   └── send_reminders.dart
+│   │
+│   ├── login/
+│   │   └── login.dart
+│   │
+│   ├── pages/
+│   │   ├── ComplaintsPage.dart
+│   │   ├── EventsPage.dart
+│   │   ├── InvoicingPage.dart
+│   │   ├── MeetingRoomPage.dart
+│   │   ├── home_page.dart
+│   │   ├── one_day_pass.dart
+│   │   └── profile_section.dart
+│   │
+│   ├── main.dart
+│   └── splash_screen.dart
+│
+├── assets/
+├── android/
+├── ios/
+└── pubspec.yaml
  
+### Backend (Node.js / Express)
+The backend follows the MVC (Model-View-Controller) pattern to organize logic, data models, and API endpoints.
+
+RAW-coworking-App/
+└── backend/
+    ├── controllers/
+    │   ├── event.controller.js
+    │   ├── invoice.controller.js
+    │   ├── meeting.controller.js
+    │   ├── serviceRequest.controller.js
+    │   └── user.controller.js
+    │
+    ├── middleware/
+    │   ├── auth.js
+    │   └── isAdmin.js
+    │
+    ├── models/
+    │   ├── Event.js
+    │   ├── Invoice.js
+    │   ├── meeting.model.js
+    │   ├── serviceRequest.model.js
+    │   └── user.model.js
+    │
+    ├── routes/
+    │   ├── event.routes.js
+    │   ├── invoice.routes.js
+    │   └── user.routes.js
+    │
+    ├── sockets/
+    │   └── socketManager.js
+    │
+    ├── utils/
+    │   ├── emails/
+    │   └── mailer.js
+    │
+    ├── index.js
+    ├── package.json
+    └── .env 
+
+    ### API Endpoints
+
+    Below are the main REST API endpoints provided by the backend:
+
+    #### User Management
+    - `POST /api/users/register` — Register a new user
+    - `POST /api/users/login` — User login
+    - `GET /api/users` — Get all users (admin only)
+    - `GET /api/users/:id` — Get user by ID
+    - `PUT /api/users/:id` — Update user details
+    - `DELETE /api/users/:id` — Delete user
+
+    #### Event Management
+    - `GET /api/events` — List all events
+    - `POST /api/events` — Create a new event
+    - `PUT /api/events/:id` — Update event details
+    - `DELETE /api/events/:id` — Delete an event
+
+    #### Meeting Room Booking
+    - `GET /api/meetings` — List all meeting room bookings
+    - `POST /api/meetings` — Book a meeting room
+    - `PUT /api/meetings/:id` — Update a booking
+    - `DELETE /api/meetings/:id` — Cancel a booking
+
+    #### Invoicing
+    - `GET /api/invoices` — List all invoices
+    - `POST /api/invoices` — Create a new invoice
+    - `PUT /api/invoices/:id` — Update invoice status/details
+    - `DELETE /api/invoices/:id` — Delete an invoice
+
+    #### Service Requests & Complaints
+    - `GET /api/service-requests` — List all service requests
+    - `POST /api/service-requests` — Submit a new request/complaint
+    - `PUT /api/service-requests/:id` — Update request status/details
+    - `DELETE /api/service-requests/:id` — Delete a request
+
+    #### Admin Actions
+    - `POST /api/admin/send-reminders` — Send reminders to users
+    - `GET /api/admin/dashboard` — Get admin dashboard stats
+
+    > All endpoints may require authentication and proper authorization (admin/user roles).
 
 ## Getting Started
 
@@ -46,14 +158,7 @@ samples, guidance on mobile development, and a full API reference.
 Find the source code and updates at:  
 [RAW coworking Space App GitHub Repository](https://github.com/gulshanjangid/RAW-coworking-App)
 
-## API Endpoint
 
-The app communicates with a backend API.  
-**Example endpoint:**  
-```
-https://rawcoworkingapi.example.com/
-```
-*(Replace with your actual endpoint as needed.)*
 
 ## How to Run
 
